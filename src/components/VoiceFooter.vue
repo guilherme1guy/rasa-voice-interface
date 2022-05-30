@@ -116,7 +116,7 @@ export default {
 			/*         This two lines using Mediarecorder            */
 			// vm.mediaRecorder = new MediaRecorder(stream, audioOptions);
 			// vm.mediaRecorder.start();
-			vm.mediaRecorder = new Recorder(source, { numChannels: 1 });
+			vm.mediaRecorder = new Recorder(source, { numChannels: 2 });
 			vm.mediaRecorder.record();
 			window.setTimeout(() => {
 				if (vm.mediaRecorder.state === 'recording') {
