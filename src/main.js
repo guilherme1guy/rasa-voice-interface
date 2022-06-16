@@ -18,7 +18,8 @@ global.$ = $;
 fontawesome.library.add(solid);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
-const socket = io('http://localhost:5005', { transports: ['websocket'] });
+const { VUE_APP_RASA_IP } = process.env;
+const socket = io(VUE_APP_RASA_IP, { transports: ['websocket'] });
 
 Vue.use(
 	new VueSocketIO({

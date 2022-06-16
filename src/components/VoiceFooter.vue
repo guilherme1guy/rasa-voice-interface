@@ -86,15 +86,12 @@ export default {
 		startRecord() {
 			const vm = this;
 			window.AudioContext = window.AudioContext || window.webkitAudioContext;
-			this.audioContext = new AudioContext({ sampleRate: 16000 });
+			this.audioContext = new AudioContext();
 			this.isRecording = true;
 			// Ask for audio device
-			navigator.getUserMedia = navigator.getUserMedia
-				|| navigator.mozGetUserMedia
-				|| navigator.webkitGetUserMedia;
-			navigator.getUserMedia({ audio: true }, vm.startUserMedia, e => {
+			navigator.mediaDevices.getUserMedia({ audio: true }).catch(e => {
 				console.log(`No live audio input in this browser: ${e}`);
-			});
+			}).then(stream => vm.startUserMedia(stream));
 		},
 		stopRecording() {
 			this.isRecording = false;
